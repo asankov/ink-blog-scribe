@@ -1,6 +1,30 @@
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
+import { Light as SyntaxHighlighter } from "react-syntax-highlighter";
+import { atomOneDark } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+// Import only commonly used languages to reduce bundle size
+import javascript from "react-syntax-highlighter/dist/esm/languages/hljs/javascript";
+import typescript from "react-syntax-highlighter/dist/esm/languages/hljs/typescript";
+import bash from "react-syntax-highlighter/dist/esm/languages/hljs/bash";
+import css from "react-syntax-highlighter/dist/esm/languages/hljs/css";
+import json from "react-syntax-highlighter/dist/esm/languages/hljs/json";
+import yaml from "react-syntax-highlighter/dist/esm/languages/hljs/yaml";
+import xml from "react-syntax-highlighter/dist/esm/languages/hljs/xml";
+
+// Register languages
+SyntaxHighlighter.registerLanguage("javascript", javascript);
+SyntaxHighlighter.registerLanguage("typescript", typescript);
+SyntaxHighlighter.registerLanguage("jsx", javascript); // Use JS for JSX
+SyntaxHighlighter.registerLanguage("tsx", typescript); // Use TS for TSX
+SyntaxHighlighter.registerLanguage("bash", bash);
+SyntaxHighlighter.registerLanguage("shell", bash); // Alias for bash
+SyntaxHighlighter.registerLanguage("css", css);
+SyntaxHighlighter.registerLanguage("json", json);
+SyntaxHighlighter.registerLanguage("yaml", yaml);
+SyntaxHighlighter.registerLanguage("yml", yaml); // Alias for yaml
+SyntaxHighlighter.registerLanguage("html", xml);
+SyntaxHighlighter.registerLanguage("xml", xml);
 
 interface MarkdownRendererProps {
   content: string;
@@ -28,9 +52,7 @@ const MarkdownRenderer = ({ content }: MarkdownRendererProps) => {
             </h3>
           ),
           p: ({ children }) => (
-            <p className="text-gray-800 leading-relaxed mb-6">
-              {children}
-            </p>
+            <p className="text-gray-800 leading-relaxed mb-6">{children}</p>
           ),
           code: ({ children, className }) => {
             const isInline = !className;
@@ -41,10 +63,28 @@ const MarkdownRenderer = ({ content }: MarkdownRendererProps) => {
                 </code>
               );
             }
+
+            // Extract language from className (format: "language-javascript")
+            const language = className
+              ? className.replace("language-", "")
+              : "text";
+
             return (
-              <pre className="bg-black text-white p-6 rounded-lg overflow-x-auto mb-6">
-                <code className="text-sm font-mono">{children}</code>
-              </pre>
+              <div className="mb-6">
+                <SyntaxHighlighter
+                  style={atomOneDark}
+                  language={language}
+                  PreTag="div"
+                  customStyle={{
+                    margin: 0,
+                    borderRadius: "0.5rem",
+                    fontSize: "0.875rem",
+                    padding: "1.5rem",
+                  }}
+                >
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
+              </div>
             );
           },
           blockquote: ({ children }) => (
@@ -62,9 +102,7 @@ const MarkdownRenderer = ({ content }: MarkdownRendererProps) => {
               {children}
             </ol>
           ),
-          li: ({ children }) => (
-            <li className="leading-relaxed">{children}</li>
-          ),
+          li: ({ children }) => <li className="leading-relaxed">{children}</li>,
           a: ({ children, href }) => (
             <a
               href={href}
