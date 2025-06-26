@@ -57,8 +57,18 @@ const ARTICLE_FILES = [
 
 let cachedPosts: BlogPost[] | null = null;
 
+// Get the base path for fetching articles
+const getBasePath = (): string => {
+  if (import.meta.env.PROD) {
+    const basePath = import.meta.env.VITE_BASE_PATH || 'ink-blog-scribe';
+    return `/${basePath}`;
+  }
+  return '';
+};
+
 export const loadMarkdownFile = async (filename: string): Promise<string> => {
-  const response = await fetch(`/articles/${filename}`);
+  const basePath = getBasePath();
+  const response = await fetch(`${basePath}/articles/${filename}`);
   if (!response.ok) {
     throw new Error(`Failed to load article: ${filename}`);
   }
@@ -67,7 +77,7 @@ export const loadMarkdownFile = async (filename: string): Promise<string> => {
 
 export const parseMarkdownWithFrontMatter = (content: string, filename: string): BlogPost => {
   const { data, content: markdownContent } = parseFrontMatter(content);
-  const frontMatter = data as BlogPostFrontMatter;
+  const frontMatter = data as unknown as BlogPostFrontMatter;
   
   // Generate ID from filename
   const id = filename.replace('.md', '');
