@@ -11,6 +11,7 @@ import css from "react-syntax-highlighter/dist/esm/languages/hljs/css";
 import json from "react-syntax-highlighter/dist/esm/languages/hljs/json";
 import yaml from "react-syntax-highlighter/dist/esm/languages/hljs/yaml";
 import xml from "react-syntax-highlighter/dist/esm/languages/hljs/xml";
+import go from "react-syntax-highlighter/dist/esm/languages/hljs/go";
 
 // Register languages
 SyntaxHighlighter.registerLanguage("javascript", javascript);
@@ -25,6 +26,7 @@ SyntaxHighlighter.registerLanguage("yaml", yaml);
 SyntaxHighlighter.registerLanguage("yml", yaml); // Alias for yaml
 SyntaxHighlighter.registerLanguage("html", xml);
 SyntaxHighlighter.registerLanguage("xml", xml);
+SyntaxHighlighter.registerLanguage("go", go);
 
 interface MarkdownRendererProps {
   content: string;
