@@ -1,0 +1,93 @@
+
+personal:
+  name: "John Doe"
+  title: "Software Engineer"
+  description: "Software Engineer with expertise in building scalable web applications"
+
+contact:
+  email: "your.email@example.com"
+  phone: "+1 (555) 123-4567"
+  linkedin: "linkedin.com/in/yourprofile"
+  github: "github.com/yourusername"
+
+summary: "Experienced software engineer with 5+ years of experience building modern web applications. Passionate about clean code, system architecture, and delivering exceptional user experiences. Strong background in React, TypeScript, and full-stack development with a focus on scalability and maintainability."
+
+experience:
+  - title: "Senior Software Engineer"
+    company: "Tech Company Inc."
+    location: "Remote"
+    period: "2022 - Present"
+    responsibilities:
+      - "Led development of customer-facing web applications serving 100k+ users"
+      - "Architected and implemented microservices using Node.js and TypeScript"
+      - "Mentored junior developers and established code review processes"
+      - "Improved application performance by 40% through optimization initiatives"
+  
+  - title: "Software Engineer"
+    company: "StartupXYZ"
+    location: "San Francisco, CA"
+    period: "2020 - 2022"
+    responsibilities:
+      - "Built responsive web applications using React and modern JavaScript"
+      - "Collaborated with design team to implement pixel-perfect UI components"
+      - "Integrated third-party APIs and payment processing systems"
+      - "Participated in agile development processes and sprint planning"
+  
+  - title: "Junior Developer"
+    company: "Development Agency"
+    location: "New York, NY"
+    period: "2019 - 2020"
+    responsibilities:
+      - "Developed and maintained client websites using HTML, CSS, and JavaScript"
+      - "Assisted in database design and backend API development"
+      - "Participated in client meetings and requirement gathering sessions"
+
+skills:
+  frontend:
+    - "React"
+    - "TypeScript"
+    - "JavaScript"
+    - "HTML5"
+    - "CSS3"
+    - "Tailwind CSS"
+    - "Next.js"
+    - "Vue.js"
+  
+  backend:
+    - "Node.js"
+    - "Python"
+    - "PostgreSQL"
+    - "MongoDB"
+    - "Docker"
+    - "AWS"
+    - "Git"
+    - "REST APIs"
+
+education:
+  - degree: "Bachelor of Science in Computer Science"
+    school: "University of Technology"
+    period: "2015 - 2019"
+    description: "Relevant coursework: Data Structures, Algorithms, Software Engineering, Database Systems, Web Development, Computer Networks"
+
+projects:
+  - title: "E-commerce Platform"
+    description: "Full-stack e-commerce solution built with React, Node.js, and PostgreSQL. Features include user authentication, payment processing, inventory management, and admin dashboard."
+    technologies:
+      - "React"
+      - "Node.js"
+      - "PostgreSQL"
+      - "Stripe API"
+  
+  - title: "Task Management App"
+    description: "Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features."
+    technologies:
+      - "React"
+      - "TypeScript"
+      - "WebSocket"
+      - "MongoDB"
+
+certifications:
+  - "AWS Certified Developer Associate (2023)"
+  - "Google Analytics Certified (2022)"
+  - "Winner - Company Hackathon 2023"
+  - "Speaker at Tech Conference 2022: \"Building Scalable React Applications\""
