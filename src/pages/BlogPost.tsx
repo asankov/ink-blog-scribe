@@ -88,7 +88,7 @@ const BlogPost = () => {
             <div className="flex items-center text-gray-500 space-x-4">
               <time>{post.date}</time>
               <span>•</span>
-              <span>{post.readTime}</span>
+              <span>{post.readTime || "Read time not available"}</span>
             </div>
           </div>
         </div>

@@ -42,20 +42,14 @@ export interface BlogPost {
 
 export interface BlogPostFrontMatter {
   title: string;
-  excerpt: string;
+  description: string;
   date: string;
   slug: string;
   readTime: string;
 }
 
-// List of available article files - this would ideally be generated during build
-const ARTICLE_FILES = [
-  'clean-code-lessons.md',
-  'scalable-react-architecture.md',
-  'typescript-advanced-patterns.md',
-];
-
 let cachedPosts: BlogPost[] | null = null;
+let cachedArticleFiles: string[] | null = null;
 
 // Get the base path for fetching articles
 const getBasePath = (): string => {
@@ -64,6 +58,21 @@ const getBasePath = (): string => {
     return `/${basePath}`;
   }
   return '';
+};
+
+export const loadArticleFiles = async (): Promise<string[]> => {
+  if (cachedArticleFiles) {
+    return cachedArticleFiles;
+  }
+
+  const basePath = getBasePath();
+  const response = await fetch(`${basePath}/articles/index.json`);
+  if (!response.ok) {
+    throw new Error('Failed to load articles index');
+  }
+  
+  cachedArticleFiles = await response.json();
+  return cachedArticleFiles;
 };
 
 export const loadMarkdownFile = async (filename: string): Promise<string> => {
@@ -82,13 +91,22 @@ export const parseMarkdownWithFrontMatter = (content: string, filename: string):
   // Generate ID from filename
   const id = filename.replace('.md', '');
   
+  console.log({
+    id,
+    title: frontMatter.title,
+    excerpt: frontMatter.description,
+    content: markdownContent,
+    date: frontMatter.date,
+    slug: id,
+    readTime: frontMatter.readTime,
+  })
   return {
     id,
     title: frontMatter.title,
-    excerpt: frontMatter.excerpt,
+    excerpt: frontMatter.description,
     content: markdownContent,
     date: frontMatter.date,
-    slug: frontMatter.slug,
+    slug: id,
     readTime: frontMatter.readTime,
   };
 };
@@ -99,8 +117,9 @@ export const loadAllBlogPosts = async (): Promise<BlogPost[]> => {
   }
 
   try {
+    const articleFiles = await loadArticleFiles();
     const posts = await Promise.all(
-      ARTICLE_FILES.map(async (filename) => {
+      articleFiles.map(async (filename) => {
         const content = await loadMarkdownFile(filename);
         return parseMarkdownWithFrontMatter(content, filename);
       })
@@ -123,4 +142,5 @@ export const getBlogPostBySlug = async (slug: string): Promise<BlogPost | undefi
 // Clear cache when needed (useful for development)
 export const clearCache = (): void => {
   cachedPosts = null;
+  cachedArticleFiles = null;
 }; 
