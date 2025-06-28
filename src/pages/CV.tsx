@@ -59,10 +59,26 @@ const CV = () => {
             </div>
             <div>
               <p className="mb-2">
-                <strong>LinkedIn:</strong> {cvData.contact.linkedin}
+                <strong>LinkedIn: </strong>
+                <a
+                  href={cvData.contact.linkedinLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  {cvData.contact.linkedin}
+                </a>
               </p>
               <p className="mb-2">
-                <strong>GitHub:</strong> {cvData.contact.github}
+                <strong>GitHub:</strong>{" "}
+                <a
+                  href={`https://github.com/${cvData.contact.github}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline"
+                >
+                  {cvData.contact.github}
+                </a>
               </p>
             </div>
           </div>

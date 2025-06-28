@@ -11,6 +11,7 @@ export interface CVData {
     email: string;
     phone: string;
     linkedin: string;
+    linkedinLink: string;
     github: string;
   };
   summary: string;
