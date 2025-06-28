@@ -26,8 +26,12 @@ const BlogCard = ({ title, excerpt, date, slug, readTime }: BlogCardProps) => {
         <p className="text-gray-600 mb-4 leading-relaxed">{excerpt}</p>
         <div className="flex items-center text-sm text-gray-500 space-x-4">
           <time>{formatDate(date)}</time>
-          <span>•</span>
-          <span>{readTime}</span>
+          {readTime && (
+            <>
+              <span>•</span>
+              <span>{readTime}</span>
+            </>
+          )}
         </div>
       </Link>
     </article>
