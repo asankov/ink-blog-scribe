@@ -5,18 +5,18 @@ personal:
   description: "XXX Software Engineer with expertise in building scalable web applications"
 
 contact:
-  email: "your.email@example.com"
-  phone: "+1 (555) 123-4567"
+  email: "anton@asankov.dev"
+  phone: "X"
   linkedin: "linkedin.com/in/yourprofile"
-  github: "github.com/yourusername"
+  github: "github.com/asankov"
 
 summary: "Experienced software engineer with 5+ years of experience building modern web applications. Passionate about clean code, system architecture, and delivering exceptional user experiences. Strong background in React, TypeScript, and full-stack development with a focus on scalability and maintainability."
 
 experience:
-  - title: "Senior Software Engineer"
-    company: "Tech Company Inc."
+  - title: "Staff Software Engineer"
+    company: "Cast AI"
     location: "Remote"
-    period: "2022 - Present"
+    period: "March 2024 - Present"
     responsibilities:
       - "Led development of customer-facing web applications serving 100k+ users"
       - "Architected and implemented microservices using Node.js and TypeScript"
