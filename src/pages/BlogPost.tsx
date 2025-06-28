@@ -8,6 +8,14 @@ const BlogPost = () => {
   const { slug } = useParams<{ slug: string }>();
   const { post, isLoading, error } = useBlogPost(slug);
 
+  const formatDate = (date: Date): string => {
+    return date.toLocaleDateString("en-GB", {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-white">
@@ -86,7 +94,7 @@ const BlogPost = () => {
           <div className="mb-8">
             <h1 className="text-4xl font-bold text-black mb-4">{post.title}</h1>
             <div className="flex items-center text-gray-500 space-x-4">
-              <time>{post.date}</time>
+              <time>{formatDate(post.date)}</time>
               <span>•</span>
               <span>{post.readTime || "Read time not available"}</span>
             </div>

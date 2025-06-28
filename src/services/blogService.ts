@@ -35,7 +35,7 @@ export interface BlogPost {
   title: string;
   excerpt: string;
   content: string;
-  date: string;
+  date: Date;
   slug: string;
   readTime: string;
 }
@@ -105,7 +105,7 @@ export const parseMarkdownWithFrontMatter = (content: string, filename: string):
     title: frontMatter.title,
     excerpt: frontMatter.description,
     content: markdownContent,
-    date: frontMatter.date,
+    date: new Date(frontMatter.date),
     slug: id,
     readTime: frontMatter.readTime,
   };
