@@ -262,7 +262,7 @@ talks:
       - name: "Securing Kubernetes with Open Policy Agent"
         summary:
           'This talk explains why admission control in Kubernetes clusters is important, and what bad things can happen due to workload misconfiguration.
-          Then it guides the audience on how to implement proper admission control using two open-source projects - <a href="https://www.openpolicyagent.org/" target="_blank">Open Policy Agent</a> and <a href="https://github.com/open-policy-agent/gatekeeper" target="_blank">Gatekeeper</a>.'
+          Then it guides the audience on how to implement proper admission control using two open-source projects - <a href="https://www.openpolicyagent.org/" target="_blank" class="text-blue-500">Open Policy Agent</a> and <a href="https://github.com/open-policy-agent/gatekeeper" target="_blank" class="text-blue-500">Gatekeeper</a>.'
         links:
           youtube: https://www.youtube.com/live/DcOYB4cUM9U?feature=share&t=12186
           github: https://github.com/asankov/securing-kubernetes-with-open-policy-agent/
@@ -274,7 +274,7 @@ talks:
       - name: Securing Kubernetes with Open Policy Agent
         summary:
           'This talk explains why admission control in Kubernetes clusters is important, and what bad things can happen due to workload misconfiguration.
-          Then it guides the audience on how to implement proper admission control using two open-source projects - <a href="https://www.openpolicyagent.org/" target="_blank">Open Policy Agent</a> and <a href="https://github.com/open-policy-agent/gatekeeper" target="_blank">Gatekeeper</a>.'
+          Then it guides the audience on how to implement proper admission control using two open-source projects - <a href="https://www.openpolicyagent.org/" target="_blank" class="text-blue-500">Open Policy Agent</a> and <a href="https://github.com/open-policy-agent/gatekeeper" target="_blank" class="text-blue-500">Gatekeeper</a>.'
         links:
           github: https://github.com/asankov/securing-kubernetes-with-open-policy-agent/
           slides: https://github.com/asankov/securing-kubernetes-with-open-policy-agent/blob/main/slides/oscal-tirana-2022.pdf
@@ -302,7 +302,7 @@ talks:
       - name: Securing Kubernetes with Open Policy Agent
         summary: |
           This talk explains why admission control in Kubernetes clusters is important, and what bad things can happen due to workload misconfiguration.
-          Then it guides the audience on how to implement proper admission control using two open-source projects - <a href="https://www.openpolicyagent.org/" target="_blank">Open Policy Agent</a> and <a href="https://github.com/open-policy-agent/gatekeeper" target="_blank">Gatekeeper</a>.
+          Then it guides the audience on how to implement proper admission control using two open-source projects - <a href="https://www.openpolicyagent.org/" target="_blank" class="text-blue-500">Open Policy Agent</a> and <a href="https://github.com/open-policy-agent/gatekeeper" target="_blank" class="text-blue-500">Gatekeeper</a>.
         links:
           youtube: https://www.youtube.com/watch?v=JewdgJASVxI
           github: https://github.com/asankov/securing-kubernetes-with-open-policy-agent/
@@ -336,7 +336,7 @@ talks:
     sessions:
       - name: Building The Twelve-Factor App
         summary: |
-          This talks explains <a href="https://12factor.net/" target="_blank">The Twelve-Factor App methodology</a> and why it is still relevant today in the world of Kubernetes, containers and microservices.
+          This talks explains <a href="https://12factor.net/" target="_blank" class="text-blue-500">The Twelve-Factor App methodology</a> and why it is still relevant today in the world of Kubernetes, containers and microservices.
         links:
           youtube: https://www.youtube.com/watch?v=xyeXx2qtfLI
           slides: https://asankov.dev/twelve-factor-app/#/
@@ -346,7 +346,7 @@ talks:
     sessions:
       - name: Building The Twelve-Factor App
         summary: |
-          This talks explains <a href="https://12factor.net/" target="_blank">The Twelve-Factor App methodology</a> and why it is still relevant today in the world of Kubernetes, containers and microservices.
+          This talks explains <a href="https://12factor.net/" target="_blank" class="text-blue-500">The Twelve-Factor App methodology</a> and why it is still relevant today in the world of Kubernetes, containers and microservices.
         links:
           slides: https://asankov.dev/twelve-factor-app/#/
   - venue: HackConf 2019

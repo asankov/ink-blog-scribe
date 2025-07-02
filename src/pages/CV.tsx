@@ -236,7 +236,10 @@ const CV = () => {
                     )}
                   </div>
                   {session.with && <div>With {session.with}</div>}
-                  <p className="text-gray-800 mb-3 mt-3">{session.summary}</p>
+                  <div
+                    className="text-gray-800 mb-3 mt-3"
+                    dangerouslySetInnerHTML={{ __html: session.summary }}
+                  />
                   <div className="flex gap-3 mt-2">
                     {session.links && (
                       <>
@@ -275,57 +278,6 @@ const CV = () => {
             </div>
           ))}
         </section>
-
-        {/* Projects */}
-        {cvData.talks.length > 10000 && (
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold text-black mb-6 border-b border-gray-200 pb-2">
-              Notable Projects
-            </h2>
-
-            <div className="space-y-6">
-              {cvData.projects.map((project, index) => (
-                <div
-                  key={index}
-                  className="border border-gray-200 rounded-lg p-6"
-                >
-                  <h3 className="text-xl font-bold text-black mb-2">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-800 mb-3">{project.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="bg-black text-white px-2 py-1 rounded text-xs font-medium"
-                      >
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-        )}
-
-        {/* Certifications */}
-        {cvData.talks.length > 10000 && (
-          <section className="mb-12">
-            <h2 className="text-3xl font-bold text-black mb-6 border-b border-gray-200 pb-2">
-              Certifications & Achievements
-            </h2>
-
-            <ul className="space-y-2 text-gray-800">
-              {cvData.certifications.map((cert, index) => (
-                <li key={index} className="flex items-start">
-                  <span className="text-black font-medium mr-2">•</span>
-                  {cert}
-                </li>
-              ))}
-            </ul>
-          </section>
-        )}
       </main>
     </div>
   );
