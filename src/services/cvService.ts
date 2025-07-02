@@ -1,5 +1,4 @@
-
-import * as yaml from 'js-yaml';
+import * as yaml from "js-yaml";
 
 export interface CVData {
   personal: {
@@ -16,21 +15,45 @@ export interface CVData {
   };
   summary: string;
   experience: Array<{
-    title: string;
     company: string;
     location: string;
-    period: string;
+    skills: Array<string>;
+    positions: Array<{
+      title: string;
+      period: string;
+    }>;
+    responsibilities: string[];
+  }>;
+  // TODO(asankov): unify types
+  openSourceContributions: Array<{
+    company: string;
+    location: string;
+    skills: Array<string>;
+    positions: Array<{
+      title: string;
+      period: string;
+    }>;
     responsibilities: string[];
   }>;
   skills: {
     frontend: string[];
     backend: string[];
   };
-  education: Array<{
-    degree: string;
-    school: string;
-    period: string;
-    description: string;
+  talks: Array<{
+    venue: string;
+    date: string;
+    location: string;
+    sessions: Array<{
+      name: string;
+      summary: string;
+      type: string;
+      with: string;
+      links: {
+        youtube: string;
+        github: string;
+        slides: string;
+      };
+    }>;
   }>;
   projects: Array<{
     title: string;
@@ -44,10 +67,10 @@ let cachedCVData: CVData | null = null;
 
 const getBasePath = (): string => {
   if (import.meta.env.PROD) {
-    const basePath = import.meta.env.VITE_BASE_PATH || 'ink-blog-scribe';
+    const basePath = import.meta.env.VITE_BASE_PATH || "ink-blog-scribe";
     return `/${basePath}`;
   }
-  return '';
+  return "";
 };
 
 export const loadCVData = async (): Promise<CVData> => {
@@ -59,14 +82,14 @@ export const loadCVData = async (): Promise<CVData> => {
     const basePath = getBasePath();
     const response = await fetch(`${basePath}/cv-data.yaml`);
     if (!response.ok) {
-      throw new Error('Failed to load CV data');
+      throw new Error("Failed to load CV data");
     }
-    
+
     const yamlContent = await response.text();
     cachedCVData = yaml.load(yamlContent) as CVData;
     return cachedCVData;
   } catch (error) {
-    console.error('Failed to load CV data:', error);
+    console.error("Failed to load CV data:", error);
     throw error;
   }
 };

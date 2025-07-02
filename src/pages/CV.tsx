@@ -1,5 +1,12 @@
 import Header from "@/components/Header";
 import { useCVData } from "@/hooks/useCVData";
+import { Calendar, MapPin } from "lucide-react";
+import {
+  FaYoutube,
+  FaGithub,
+  FaSlideshare,
+  FaStickyNote,
+} from "react-icons/fa";
 
 const CV = () => {
   const { data: cvData, isLoading, error } = useCVData();
@@ -102,127 +109,223 @@ const CV = () => {
             {cvData.experience.map((job, index) => (
               <div key={index} className="border-l-2 border-gray-200 pl-6">
                 <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                  <h3 className="text-xl font-bold text-black">{job.title}</h3>
-                  <span className="text-gray-600 font-medium">
-                    {job.period}
+                  <h3 className="text-xl font-bold text-black">
+                    {job.company}
+                  </h3>
+                  <span className="text-gray-600 font-medium flex items-center gap-1">
+                    <MapPin className="w-4 h-4" />
+                    {job.location}
                   </span>
                 </div>
-                <p className="text-gray-700 font-medium mb-3">
-                  {job.company} • {job.location}
-                </p>
-                <ul className="list-disc list-inside text-gray-800 space-y-2">
+                {job.positions &&
+                  job.positions.map((position, index) => (
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 ml-2">
+                      <span className="font-bold">{position.title}</span>
+                      <span className="text-gray-600 font-medium flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {position.period}
+                      </span>
+                    </div>
+                  ))}
+                <ul className="list-disc list-inside text-gray-800 space-y-2 ml-2">
                   {job.responsibilities.map((responsibility, idx) => (
                     <li key={idx}>{responsibility}</li>
                   ))}
                 </ul>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <span className="font-bold">Tech: </span>
+                  {job.skills &&
+                    job.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* Skills */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold text-black mb-6 border-b border-gray-200 pb-2">
-            Technical Skills
+            Open Source Contributions
           </h2>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-bold text-black mb-4">Frontend</h3>
-              <div className="flex flex-wrap gap-2">
-                {cvData.skills.frontend.map(skill => (
-                  <span
-                    key={skill}
-                    className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium"
-                  >
-                    {skill}
+          <div className="space-y-8">
+            {cvData.openSourceContributions.map((os, index) => (
+              <div key={index} className="border-l-2 border-gray-200 pl-6">
+                <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                  <h3 className="text-xl font-bold text-black">{os.company}</h3>
+                  <span className="text-gray-600 font-medium flex items-center gap-1">
+                    <MapPin className="w-4 h-4" />
+                    {os.location}
                   </span>
-                ))}
+                </div>
+                {os.positions &&
+                  os.positions.map((position, index) => (
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 ml-2">
+                      <span className="font-bold">{position.title}</span>
+                      <span className="text-gray-600 font-medium flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {position.period}
+                      </span>
+                    </div>
+                  ))}
+                <ul className="list-disc list-inside text-gray-800 space-y-2 ml-2">
+                  {os.responsibilities.map((responsibility, idx) => (
+                    <li key={idx}>{responsibility}</li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <span className="font-bold">Tech: </span>
+                  {os.skills &&
+                    os.skills.map((skill) => (
+                      <span
+                        key={skill}
+                        className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium"
+                      >
+                        {skill}
+                      </span>
+                    ))}
+                </div>
               </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold text-black mb-4">
-                Backend & Tools
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {cvData.skills.backend.map(skill => (
-                  <span
-                    key={skill}
-                    className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
+            ))}
           </div>
         </section>
 
-        {/* Education */}
         <section className="mb-12">
           <h2 className="text-3xl font-bold text-black mb-6 border-b border-gray-200 pb-2">
-            Education
+            Public Talks
           </h2>
 
-          {cvData.education.map((edu, index) => (
-            <div key={index} className="border-l-2 border-gray-200 pl-6">
+          {cvData.talks.map((talk, index) => (
+            <div key={index} className="border-l-2 border-gray-200 pl-6 mb-10">
               <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-                <h3 className="text-xl font-bold text-black">{edu.degree}</h3>
-                <span className="text-gray-600 font-medium">{edu.period}</span>
+                <h3 className="text-xl font-bold text-black">{talk.venue}</h3>
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-4 h-4" />
+                  <span className="text-gray-600 font-medium">
+                    {talk.location}
+                  </span>
+                </span>
               </div>
-              <p className="text-gray-700 font-medium mb-3">{edu.school}</p>
-              <p className="text-gray-800">{edu.description}</p>
+              {talk.sessions.map((session, index) => (
+                <div className="ml-3">
+                  <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2 mt-3">
+                    <div className="flex items-center">
+                      <p className="text-gray-700 font-medium">
+                        {session.name}
+                      </p>
+                      {session.type && (
+                        <span className="bg-gray-100 text-gray-800 px-3 py-1 rounded-full text-sm font-medium ml-1">
+                          {session.type}
+                        </span>
+                      )}
+                    </div>
+                    {/* we want to render the date only for the first talk, and I'm too lazy to come up with a smarter solution. */}
+                    {index == 0 && (
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        <span className="text-gray-600 font-medium">
+                          {talk.date}
+                        </span>
+                      </span>
+                    )}
+                  </div>
+                  {session.with && <div>With {session.with}</div>}
+                  <p className="text-gray-800 mb-3 mt-3">{session.summary}</p>
+                  <div className="flex gap-3 mt-2">
+                    {session.links && (
+                      <>
+                        {session.links.youtube && (
+                          <a
+                            href={session.links.youtube}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <FaYoutube className="w-10 h-10 hover:text-gray-600 text-black cursor-pointer" />
+                          </a>
+                        )}
+                        {session.links.github && (
+                          <a
+                            href={session.links.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <FaGithub className="w-10 h-10 hover:text-gray-600 text-black cursor-pointer" />
+                          </a>
+                        )}
+                        {session.links.slides && (
+                          <a
+                            href={session.links.slides}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            <FaSlideshare className="w-10 h-10 hover:text-gray-600 text-black cursor-pointer" />
+                          </a>
+                        )}
+                      </>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           ))}
         </section>
 
         {/* Projects */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold text-black mb-6 border-b border-gray-200 pb-2">
-            Notable Projects
-          </h2>
+        {cvData.talks.length > 10000 && (
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold text-black mb-6 border-b border-gray-200 pb-2">
+              Notable Projects
+            </h2>
 
-          <div className="space-y-6">
-            {cvData.projects.map((project, index) => (
-              <div
-                key={index}
-                className="border border-gray-200 rounded-lg p-6"
-              >
-                <h3 className="text-xl font-bold text-black mb-2">
-                  {project.title}
-                </h3>
-                <p className="text-gray-800 mb-3">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.technologies.map(tech => (
-                    <span
-                      key={tech}
-                      className="bg-black text-white px-2 py-1 rounded text-xs font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
+            <div className="space-y-6">
+              {cvData.projects.map((project, index) => (
+                <div
+                  key={index}
+                  className="border border-gray-200 rounded-lg p-6"
+                >
+                  <h3 className="text-xl font-bold text-black mb-2">
+                    {project.title}
+                  </h3>
+                  <p className="text-gray-800 mb-3">{project.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="bg-black text-white px-2 py-1 rounded text-xs font-medium"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
 
         {/* Certifications */}
-        <section className="mb-12">
-          <h2 className="text-3xl font-bold text-black mb-6 border-b border-gray-200 pb-2">
-            Certifications & Achievements
-          </h2>
+        {cvData.talks.length > 10000 && (
+          <section className="mb-12">
+            <h2 className="text-3xl font-bold text-black mb-6 border-b border-gray-200 pb-2">
+              Certifications & Achievements
+            </h2>
 
-          <ul className="space-y-2 text-gray-800">
-            {cvData.certifications.map((cert, index) => (
-              <li key={index} className="flex items-start">
-                <span className="text-black font-medium mr-2">•</span>
-                {cert}
-              </li>
-            ))}
-          </ul>
-        </section>
+            <ul className="space-y-2 text-gray-800">
+              {cvData.certifications.map((cert, index) => (
+                <li key={index} className="flex items-start">
+                  <span className="text-black font-medium mr-2">•</span>
+                  {cert}
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </main>
     </div>
   );
