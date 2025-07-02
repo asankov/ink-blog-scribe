@@ -5,7 +5,9 @@ import {
   FaYoutube,
   FaGithub,
   FaSlideshare,
-  FaStickyNote,
+  FaEnvelope,
+  FaPhone,
+  FaLinkedin,
 } from "react-icons/fa";
 
 const CV = () => {
@@ -43,7 +45,7 @@ const CV = () => {
       <main className="max-w-4xl mx-auto px-6 py-12">
         <div className="mb-12">
           <h1 className="text-4xl font-bold text-black mb-4">
-            Curriculum Vitae
+            {cvData.personal.name}
           </h1>
           <p className="text-xl text-gray-600 leading-relaxed">
             {cvData.personal.description}
@@ -55,39 +57,35 @@ const CV = () => {
           <h2 className="text-3xl font-bold text-black mb-6 border-b border-gray-200 pb-2">
             Contact Information
           </h2>
-          <div className="grid md:grid-cols-2 gap-4 text-gray-800">
-            <div>
-              <p className="mb-2">
-                <strong>Email:</strong> {cvData.contact.email}
-              </p>
-              <p className="mb-2">
-                <strong>Phone:</strong> {cvData.contact.phone}
-              </p>
-            </div>
-            <div>
-              <p className="mb-2">
-                <strong>LinkedIn: </strong>
-                <a
-                  href={cvData.contact.linkedinLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  {cvData.contact.linkedin}
-                </a>
-              </p>
-              <p className="mb-2">
-                <strong>GitHub:</strong>{" "}
-                <a
-                  href={`https://github.com/${cvData.contact.github}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  {cvData.contact.github}
-                </a>
-              </p>
-            </div>
+          <div className="flex gap-6 text-black">
+            <a
+              href={`mailto:${cvData.contact.email}`}
+              className="flex items-center gap-2 text-black hover:text-gray-600 transition-colors"
+              title={`Email: ${cvData.contact.email}`}
+            >
+              <FaEnvelope className="w-5 h-5" />
+              <span>{cvData.contact.email}</span>
+            </a>
+            <a
+              href={cvData.contact.linkedinLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-black hover:text-gray-600 transition-colors"
+              title={`LinkedIn: ${cvData.contact.linkedin}`}
+            >
+              <FaLinkedin className="w-5 h-5" />
+              <span>{cvData.contact.linkedin}</span>
+            </a>
+            <a
+              href={`https://github.com/${cvData.contact.github}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 text-black hover:text-gray-600 transition-colors"
+              title={`GitHub: ${cvData.contact.github}`}
+            >
+              <FaGithub className="w-5 h-5" />
+              <span>{cvData.contact.github}</span>
+            </a>
           </div>
         </section>
 

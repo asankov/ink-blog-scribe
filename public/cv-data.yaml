@@ -1,7 +1,7 @@
 personal:
   name: "Anton Sankov"
-  title: "Senior Software Engineer"
-  description: "Senior Software Engineer, currently dedicated to the Cloud Native Security space"
+  title: "Staff Software Engineer"
+  description: "Staff Software Engineer, currently building AI apps that automate your Kubernetes operations"
 
 contact:
   email: "anton@asankov.dev"
